@@ -1,0 +1,32 @@
+\input{preamble}
+\usetheme{Berkeley}
+\usecolortheme{seahorse}
+
+\input{titlepage}
+
+\begin{document}
+\maketitle
+
+\begin{frame}
+\frametitle{Mục lục}
+\tableofcontents
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Mục lục}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section{Chuỗi Markov là gì ?}
+\include{chapter/Chuỗi Markov là gì?/ch1}
+
+\section{Tính toán chuỗi Markov}
+\include{chapter/Tính toán chuỗi Markov/ch2}
+
+% \section{Ứng dụng}
+\include{chapter/Ứng dụng/Trương Ký giả}
+
+\end{document}

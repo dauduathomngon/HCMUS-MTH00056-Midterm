@@ -1,0 +1,114 @@
+\section{Ứng dụng Dự đoán từ tiếp theo}
+%%-----------frame 1------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+\begin{myproblem*}{}
+    \begin{itemize}
+        \item[\bullet] Trong rất nhiều các công cụ tìm kiếm, cũng như các phần mềm cho ứng dụng tìm kiếm hiện nay, chúng ta có thể dễ dàng nhận ra được một chức năng rất phổ biến, đó chính là đưa ra những đề xuất về từ ngữ tiếp theo dựa vào những từ vừa được gõ. Từ đó chúng ta có bài toán làm thế nào để tìm ra đâu là những từ có xác suất xuất hiện tiếp theo cao nhất.
+        \item[\bullet] Có rất nhiều những phương pháp có thể được áp dụng trong việc giải quyết bài toán trên một cách hiệu quả chẳng hạn như Deep Learning. Tuy nhiên, chúng ta cũng có thể giải quyết bài toán này (một cách đơn giản, song không tối ưu như DL) bằng chuỗi Markov.
+    \end{itemize}
+\end{myproblem*}
+\end{frame}
+
+%%-----------frame 2------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+\begin{LARGE}
+Chuẩn bị và xử lý dữ liệu \par
+\end{LARGE}
+\begin{itemize}
+    \item[\bullet] Đầu tiên, từ một tập dữ liệu (dataset) gồm những từ, câu đã được tìm kiếm (lấy từ database của công cụ tìm kiếm) hoặc từ những từ đã được gõ (lấy từ database của phần mềm bàn phím điện thoại như LabanKey), chúng ta sẽ loại bỏ các kí tự đặt biệt (dấu câu,..), sau đó phân tách từng câu ra thành cụm lần lượt có 1, 2 và 3 từ, sau đó xây dựng ma trận xác suất (sẽ được trình bày ở phần sau). 
+    \item[\bullet] Để dễ hình dung cách hoạt động của thuật toán, trong quy mô bài báo cáo này, chúng tôi xin được minh hoạt bằng 1 dataset lấy từ một vài câu comment trên Facebook như sau:
+
+    \begin{center}
+    "Tin này là tin chuẩn chưa anh?" \\
+    "Này là tin chuẩn em ạ!" \\
+    "Đừng spam tin này nữa em nhé!" \\
+    "Tin này chưa chuẩn em nhé!" \\
+    "Anh sẽ chặn các bạn spam tin này." 
+    \end{center}
+\end{itemize}
+\end{frame}
+
+%%-----------frame 3------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+\begin{itemize}
+    \item[\bullet] Phân tách thành các cụm 1 từ, ta được 16 cụm sau: 
+    'tin', 'này', 'là', 'chuẩn', 'chưa', 'anh', 'em', 'ạ', 'đừng', 'spam', 'nữa', 'nhé', 'sẽ', 'chặn', 'các', 'bạn'.
+    \item[\bullet] Phân tách thành các cụm 2 từ, ta được 20 cụm sau: 'tin này', 'này là', 'là tin', 'tin chuẩn', 'chuẩn chưa', 'chưa anh', 'chuẩn em', 'em ạ', 'đừng spam', 'spam tin', 'này nữa', 'nữa em', 'em nhé', 'này chưa', 'chưa chuẩn', 'anh sẽ', 'sẽ chặn', 'chặn các', 'các bạn', 'bạn spam'.
+    \item[\bullet] Phân tách thành các cụm 3 từ, ta được 21 cụm sau: 'tin này là', 'này là tin', 'là tin chuẩn', 'tin chuẩn chưa', 'chuẩn chưa anh', 'tin chuẩn em', 'chuẩn em ạ', 'đừng spam tin', 'spam tin này', 'tin này nữa', 'này nữa em', 'nữa em nhé', 'tin này chưa', 'này chưa chuẩn', 'chưa chuẩn em', 'chuẩn em nhé', 'anh sẽ chặn', 'sẽ chặn các', 'chặn các bạn', 'các bạn spam', 'bạn spam tin'.
+
+\end{itemize}
+
+\end{frame}
+
+%%-----------frame 4------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+\only<1>
+{
+\begin{LARGE}
+    Xây dựng ma trận chuyển tiếp \par
+\end{LARGE}
+\begin{itemize}
+    \item[\bullet] Từ những cụm từ chúng ta đã phân tách ở phần trên, chúng ta có thể xây dựng các ma trận chuyển trạng thái biểu diễn xác suất những từ sẽ xuất hiện tiếp theo dựa vào 1 hoặc 2 hoặc 3 từ trước đó. 
+    \item[\bullet] Ma trận trạng thái sẽ được định nghĩa như sau: phần tử hàng $i$ cột $j$ sẽ biểu diễn xác suất cho sự xuất hiện của trạng thái tiếp theo $j$ tương ứng với trạng thái hiện tại $i.$ Xác suất đó sẽ được tính bằng số lần xuất hiện của trạng $j$ sau trạng thái $i$ chia cho tổng số lần xuất hiện của các trạng thái.
+\end{itemize}
+}
+\end{frame}
+
+%%-----------frame 5------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+\begin{LARGE}
+    Tiến hành dự đoán từ tiếp theo   \par
+\end{LARGE}
+\begin{itemize}
+    \item[\bullet] Đầu tiên, với từ ngữ đầu tiên được nhập (từ bàn phím), ta có thể thành lập 1 vector phân phối các trạng thái hiện tại. Vì mới chỉ có 1 từ nên chúng ta sử dụng ma trận phân phối với các trạng thái hiện tại là 1 từ, ví dụ cụ thể như sau:
+    \begin{itemize}
+        \item[-] Với từ đầu tiên được nhập là "tin", thứ tự tương ứng với thứ tự các trạng thái trong ma trận chuyển tiếp ở trên, ta được vector phân phối:
+    \end{itemize}
+    $$
+    \pi_0 = 
+    \begin{bmatrix}
+        1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 
+    \end{bmatrix} 
+    $$
+    
+    
+    \item[\bullet] Từ đó, ta có thể xác định phân phối tiếp theo:
+    $$ \pi_1 = \pi_0 P_1 = 
+    \begin{bmatrix}
+        0 & 2/3 & 0 & 1/3 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 
+    \end{bmatrix}
+    $$
+    \item[\bullet] Vậy, ta có thể đề xuất những từ có xác suất cao nhất:
+    \begin{itemize}
+        \item Từ "này" \space với xác suất $\frac{2}{3}.$
+        \item Từ "chuẩn" \space với xác suất $\frac{1}{3}.$
+        
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+%%-----------frame 6------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+
+\begin{itemize}
+     \item[\bullet] Nếu người dùng đã viết được ít nhất $2$ từ, để tăng độ chính xác khi đề xuất từ cũng như đảm bảo một phần yếu tố ngữ nghĩa của câu, ta sử dụng ma trận chuyển tiếp của trạng thái $2$ từ và ma trận chuyển trạng thái $3$ từ. Từ đó, ta có thể xây dựng thuật toán như sau:
+
+    \begin{itemize}
+        \item[-] Với những câu chỉ có một từ, sử dụng ma trận chuyển tiếp với trạng thái $1$ từ.
+        \item[-]  Với những câu có nhiều hơn $2$ từ, lần lượt xét $3$ từ cuối của câu xem đã tồn tại thái là $3$ từ đấy chưa, nếu có, sử dụng ma trận chuyển tiếp với trạng thái $3$ từ, nếu chưa thì chuyển sang xét $2$ từ cuối và ma trận chuyển tiếp với trạng thái $2$ từ, và cứ như thế cho đến khi còn $1$ từ.
+        \item[-] Sau khi hoàn thành, tiếp tục cập nhật các trạng thái và xác suất mới vào dataset.
+    \end{itemize}     
+
+\end{itemize}
+\end{frame}
+
+%%-----------frame 7------------------
+\begin{frame}{Dự đoán từ tiếp theo}
+    \item[\bullet] Một số ví dụ:
+    \begin{itemize}
+        \item[-] Với cụm từ đã gõ "Anh cho em hỏi tin này là", ta sẽ xét 3 từ cuối là "tin này là", nhận thấy đây là 1 trạng thái trong ma trận chuyển tiếp, áp dụng mô hình ở trên.
+        \item[\rightarrow] Từ đó, ta đề xuất từ "tin" \space cho người dùng với xác suất bằng $1$.        
+        \item[-] Với cụm từ đã gõ "Đây có phải tin chuẩn", ta sẽ xét $3$ từ cuối là "phải tin chuẩn", nhận thấy đây không là $1$ trạng thái trong ma trận chuyển tiếp, ta xét $2$ từ cuối là "tin chuẩn", nhận thấy đây là một trạng thái của ma trận chuyển tiếp $2$ từ, áp dụng mô hình.
+        \item[\rightarrow] Từ đó, ta đề xuất từ "tin" \space cho người dùng với xác suất bằng $0.5$, hoặc từ "em" \space với xác suất bằng $0.5$.   
+    \end{itemize}
+\end{frame}

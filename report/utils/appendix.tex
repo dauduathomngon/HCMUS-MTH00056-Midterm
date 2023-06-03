@@ -1,0 +1,311 @@
+% \chapter*{A: Tập hợp cơ bản}
+% \addcontentsline{toc}{chapter}{A: Tập hợp cơ bản}
+\setcounter{chapter}{-1}
+\chapter{Kiến thức cơ bản}
+
+\section{Tập hợp}
+
+% \section*{Mở đầu}
+
+\begin{itemize}
+    % \item Khi phần tử $a$ thuộc tập hợp $A$, ta sẽ kí hiệu $a \in A$. Ngược lại, ta kí hiệu là $a \notin A$.
+
+    % \item Tập hợp không chứa phần tử nào được gọi là \textbf{tập hợp rỗng}, kí hiệu là $\emptyset$.
+
+    \item Khi biểu diễn một tập hợp $A$ bất kì, ta sẽ viết như này:
+    $$
+    A = \{ x \mid \text{điều kiện E} \}
+    $$
+    khi đó, ta hiểu là tập hợp $A$ có các phần tử là $x$ thoả điều kiện $E$.
+
+    \item \textbf{Giao} của hai tập hợp $A$ và $B$, kí hiệu $A \cap B$ là:
+    $$
+    A \cap B = \{ x \mid (x \in A) \hspace{5pt} \text{và} \hspace{5pt} (x \in B) \}
+    $$
+
+    \item \textbf{Hợp} của hai tập hợp $A$ và $B$, kí hiệu $A \cup B$ là:
+    $$
+    A \cup B = \{ x \mid (x \in A) \hspace{5pt} \text{hoặc} \hspace{5pt} (x \in B) \}
+    $$
+
+    \item \textbf{Bù} của một tập hợp $A$, kí hiệu $A^c$ là:
+    $$
+    A^c = \{ x \mid x \notin A\}
+    $$
+
+    \item Hai tập hợp $A$ và $B$ \textbf{xung khắc} với nhau nếu:
+    $$
+    A \cap B = \emptyset
+    $$
+
+    \item Một bộ thứ tự gồm 2 phần tử $a$ và $b$ được kí hiệu là $(a, b)$ và một bộ thứ tự $(a,b)$ bằng bộ thứ tự $(c, d)$ khi và chỉ khi $(a = c)$ và $(b = d)$. Ngoài ra $(a, b) \neq (b, a)$.
+
+    \item \textbf{Tích} của hai tập hợp $A$ và $B$ là một tập hợp gồm các bộ thứ tự các phần tử của $A$ và $B$.
+    $$
+    A \times B = \{ (a,b) \mid a \in A, b \in B\}
+    $$
+    
+    % \item Ngoài ra ta nói một tập hợp $A$ là \textbf{tập hợp con} của tập hợp $B$ nếu mọi phần tử của $A$ đều là phần tử của $B$ và ta kí hiệu $A \subseteq B$.
+    
+    \item Ta gọi một tập hợp $S$ là \textbf{đếm được} nếu $S$ là một tập hợp có hữu hạn phần tử hoặc ta có thể đánh số thứ tự, tức là $(0, 1, 2, ...)$ hoặc $(1, 2, ...)$ hoặc tuỳ, cho từng phần tử của $S$ (ta còn gọi là vô hạn đếm được).
+
+    \item Xét một bộ các tập hợp $A_1, A_2, ...$. Ta nói nó là một \textbf{phân hoạch} của một tập hợp $S$ bất kỳ nếu nó thoả mãn hai điều kiện sau:
+    \begin{itemize}
+        \item[(a)] $A_i \cap A_j = \emptyset$ với mọi $i \neq j$, nghĩa là 
+        \textit{xung khắc đôi một} với nhau.
+        \item[(b)] $S = \cup_{i=1}^{\infty} A_i$.
+    \end{itemize}
+    
+\end{itemize}
+
+% \begin{defivn}
+%     Xét tập hợp $\Omega$, ta nói một bộ gồm các tập hợp $A_1, A_2, ...$ là một \textbf{phân hoạch} của $\Omega$ nếu thoả mãn 2 điều kiện sau:
+%     \begin{itemize}
+%         \item[(a)] $A_i \cap A_j = \emptyset$ với mọi $i \neq j$, nghĩa là xung khắc đôi một với nhau.
+%         \item[(b)] $\Omega = \cup_{i=1}^{\infty} A_i$.
+%     \end{itemize}
+% \end{defivn}
+
+% \section*{Ánh xạ}
+
+% \begin{itemize}
+%     \item Hai từ \textbf{hàm số} và \textbf{ánh xạ} có thể được hiểu như nhau.
+
+%     \item Ta dùng kí hiệu $f: A \to B$ để chỉ một hàm số $f$ đi từ $A$ đến $B$ và các giá trị của $f$ tại $a \in A$ được kí hiệu là $f(a)$.
+
+%     \item Với mỗi tập hợp con $C$ của $B$, ta định nghĩa:
+%     $$
+%     f^{-1}(C) = \{ a \in A \mid f(a) \in C\}
+%     $$
+
+%     \item Khi đó nếu chỉ xét tập hợp gồm một phần tử là $\{b\} \subseteq B$, ta có:
+%     $$
+%     f^{-1}(\{b\}) = \{ a \in A \mid f(a) \in \{b\} \} = \{ a \in A \mid f(a) = b\}
+%     $$
+
+%     \item Ngoài ta có thể viết $f^{-1}(b)$ thay cho $f^{-1}(\{b\})$.
+
+%     \item Nếu $f: A \to B$ và $g: B \to C$ thì \textbf{hàm hợp} của $f$ và $g$, kí hiệu là $g \circ f: A \to C$ được định nghĩa như sau:
+%     $$
+%     (g \circ f)(a) = g(f(a))
+%     $$
+% \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \chapter*{B: Xác suất cơ bản}
+% \addcontentsline{toc}{chapter}{B: Xác suất cơ bản}
+
+\section{Xác suất}
+
+% \subsection*{Biến cố}
+
+\begin{defivn}
+    Tập hợp các kết quả của một phép thử ngẫu nhiên được gọi là \textbf{không gian mẫu}, kí hiệu là $\Omega$.
+\end{defivn}
+
+\begin{egvn}
+    Tung 1 xúc sắc thì không gian mẫu sẽ là $\Omega = \{1, 2, 3, 4, 5, 6\}$. Nhưng nếu tung 2 xúc sắc thì không gian mẫu sẽ là $\Omega = \{1, 2, 3, 4, 5, 6\} \times \{1, 2, 3, 4, 5, 6\}$.
+\end{egvn}
+
+\begin{itemize}
+    \item Các phần tử của $\Omega$ được kí hiệu là $\omega$.
+    
+    \item Gọi $\mathcal{P}(\Omega)$ là tập hợp chứa tất cả các tập hợp con của $\Omega$ (còn được gọi là \textit{tập luỹ thừa} của $\Omega$).
+    
+    \item Ta có thể xem một biến cố như là một tập hợp con của $\Omega$ nhưng liệu mọi tập hợp con của $\Omega$ đều là biến cố hay không ?
+\end{itemize}
+
+\begin{defivn}
+    Một tập hợp con của $\mathcal{P}(\Omega)$, kí hiệu là $\mathcal{F}$, được gọi là \textbf{sigma đại số} nếu nó thoả mãn 3 điều kiện sau đây:
+    \begin{itemize}
+        \item[(a)] $\emptyset \in \mathcal{F}$.
+        \item[(b)] Nếu $A \in \mathcal{F}$ thì $A^c \in \mathcal{F}$.
+        \item[(c)] Nếu $A_1, A_2, ... \in \mathcal{F}$:
+        $$
+        \bigcup_{i=1}^{\infty} A_i \in \mathcal{F}
+        $$
+    \end{itemize}
+\end{defivn}
+
+\begin{itemize}
+    \item Các phần tử của $\mathcal{F}$ được gọi là \textbf{biến cố}. Ngoài ra ta cũng có thể gọi $\mathcal{F}$ là \textbf{không gian biến cố}.
+
+    \item Nếu $\Omega$ là một tập hợp đếm được thì $\mathcal{F} = \mathcal{P}(\Omega)$, còn ngược lại $\mathcal{F} \subset \mathcal{P}(\Omega)$.
+    
+    \item Ngoài ra ta có thể thấy, nếu $A_1, A_2, ... \in \mathcal{F}$ thì:
+    $$
+    \bigcap_{i=1}^{\infty} A_i \in \mathcal{F}
+    $$
+\end{itemize}
+
+% \pagebreak
+% \subsection*{Độ đo xác suất}
+\begin{defivn}
+    Một hàm số $\P: \mathcal{F} \to [0, 1]$ được gọi là \textbf{độ đo xác suất} nếu nó thoả mãn các điều kiện dưới đây:
+    \begin{itemize}
+        \item[(a)] $\P(\Omega) = 1$.
+        \item[(c)] $\P(A) \geq 0$ với mọi $A \in \mathcal{F}$.
+        \item[(b)] Nếu $A_1, A_2, ...$ là các biến cố \textit{xung khắc đôi một}, nghĩa là $A_i \cap A_j = \emptyset$ với $i \neq j$, thì:
+        $$
+        \P \left( \bigcup_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} \P(A_i)
+        $$
+    \end{itemize}
+\end{defivn}
+
+\begin{itemize}
+    \item Ba điều kiện của định nghĩa trên còn được gọi là \textbf{tiên đề Kolmogorov}.
+
+    \item Từ định nghĩa trên, ta cũng có các tính chất sau đây:
+    $$
+    \P(A^c) = 1 - \P(A) \hspace*{10pt} \text{và} \hspace*{10pt} \P(A \cup B) = \P(A) + \P(B) - \P(A \cap B)
+    $$
+
+    \item Bộ ba $(\Omega, \mathcal{F}, \P)$ được gọi là \textbf{không gian xác suất} gồm không gian mẫu $\Omega$ là tập hợp tất cả kết quả của một phép thử mà ta xét, sigma đại số $\mathcal{F}$ gồm các biến cố mà ta quan tâm đến và cuối cùng là độ đo xác suất $\P$ để ta biết được khả năng mà biến cố ta xét có thể xảy ra.
+
+%     \item Ngoài ra, ta nói một biến cố $B$ xảy ra \textbf{gần như chắc chắn} (\textit{almost surely} hoặc viết tắt \textit{a.s.}) nếu $\P(B) = 1$.
+
+%     \item Và cuối cùng là về tính liên tục của độ đo xác suất:
+%     \begin{itemize}
+%         \item[1.] Cho $A_1 \subseteq A_2 \subseteq ...$, khi đó:
+%         $$
+%         \lim_{n \to \infty} \P(A_n) = \P \left( \bigcup_{n=1}^{\infty} A_n \right)
+%         $$
+%         \item[2.] Cho $A_1 \supseteq A_2 \supseteq ...$, khi đó:
+%         $$
+%         \lim_{n \to \infty} \P(A_n) = \P \left( \bigcap_{n=1}^{\infty} A_n \right)
+%         $$
+%     \end{itemize}
+\end{itemize}
+
+% % \pagebreak
+
+\begin{defivn}
+    Xét một không gian xác suất $(\Omega, \mathcal{F}, \P)$. Cho $A, B \in \mathcal{F}$ và $\P(B) > 0$, khi đó \textbf{xác suất có điều kiện} của $A$ biết $B$, kí hiệu là $\P(A \mid B)$, là:
+    $$
+    \P(A \mid B) = \dfrac{\P(A \cap B)}{\P(B)}
+    $$
+\end{defivn}
+
+\begin{itemize}
+    \item Nếu ta xét $A_1, A_2, ...$ là một phân hoạch của $\Omega$ thì với mọi $B \in \mathcal{F}$, ta có:
+    $$
+    \P(B) = \sum_{i=1}^{\infty} \P(B \cap A_i) = \sum_{i=1}^{\infty} \P(A_i \mid B)\P(B) = \sum_{i=1}^{\infty} \P(B \mid A_i)\P(A_i).
+    $$
+
+    \item Công thức phía trên còn được gọi là \textbf{công thức xác suất đầy đủ}.
+
+    \item Ngoài ra nếu ta biến đổi 1 tí, ta sẽ có được:
+    $$
+    \P(A \mid B) = \dfrac{\P(A) \P(B \mid A)}{\P(B)}
+    $$
+
+    \item Công thức phía trên là một trường hợp đặc biệt của \textbf{Định lý Bayes}.
+
+    \item Kết hợp với công thức xác suất đầy đủ và một phân hoạch $A_1, A_2, ...$, ta có dạng tổng quát của định lý Bayes.
+    $$
+    \P(A_i \mid B) = \dfrac{\P(A_i)\P(B \mid A_i)}{\sum_{j=1}^{\infty} \P(B \mid A_j) \P(A_j)}
+    $$
+\end{itemize}
+
+\begin{defivn}
+    Hai biến cố được nói là \textbf{độc lập} nếu:
+    $$
+    \P(A \cap B) = \P(A) \P(B)
+    $$
+\end{defivn}
+
+% \subsection*{Biến ngẫu nhiên}
+
+% %     \item Lưu ý là từ đây trở về sau ta chỉ làm việc với biến ngẫu nhiên rời rạc nên nếu nói biến ngẫu nhiên thì ta hiểu là biến ngẫu nhiên rời rạc.
+% % \end{itemize}
+
+\begin{defivn}
+    Cho $(\Omega, \mathcal{F}, \P)$ là một không gian xác suất. Một \textbf{biến ngẫu nhiên rời rạc} $X$ là một hàm số đi từ $\Omega$ đến một tập hợp $S$ đếm được, hay nói cách khác:
+    $$
+    X: \Omega \to S 
+    $$
+\end{defivn}
+
+\begin{itemize}
+%     \item $S$ còn được gọi là \textbf{không gian borel} hay \textbf{không gian đo được}, nhưng không cần quan tâm nó đâu.
+
+    % \item Xét một biến ngẫu nhiên $X$ và $A \subseteq S$, khi đó:
+    % $$
+    % \{X \in A\} = \{\omega \in \Omega \mid X(\omega) \in A\}
+    % $$
+
+    % \item Ngoài ra với mọi $s \in S$, ta cũng có:
+    % $$
+    % \{X \leq s\} = \{\omega \in \Omega \mid X(\omega) \leq s\}
+    % $$
+
+    % \item Tương tự:
+    % $$
+    % \{X \geq s\} = \{\omega \in \Omega \mid X(\omega) \geq s\}
+    % $$
+
+    % \item Và:
+    % $$
+    % \{X = s\} = \{\omega \in \Omega \mid X(\omega) = s\}
+    % $$
+
+    \item Khi ta xét đến biến ngẫu nhiên, ta cũng phải xem xét \textit{miền giá trị} của nó, theo như định nghĩa là $S$ và $S = \{x_1, x_2, ..., x_m \}$. Ta xem miền giá trị của $X$ như là một không gian mẫu mới. Do đó ta ta sẽ đi kèm với một độ đo xác suất trên không gian mẫu này, kí hiệu là $\P_{S}$ và được định nghĩa như sau:
+    $$
+    \P_{S}(X = x_i) = \P(\{\omega \in \Omega \mid X(\omega) = x_i\})
+    $$
+
+    \item Ngoài ra nếu xét trên một tập hợp con $A$ của $S$, ta vẫn có thể áp dụng lại định nghĩa trên:
+    $$
+    \P_{S}(X \in A) = \P(\{\omega \in \Omega \mid X(\omega) \in A\})
+    $$
+    
+    \item Ngoài ra ta có thể viết $\P(X = x_i)$ thay cho $\P_{S}(X = x_i)$.
+    
+    \item Nếu có một chuỗi biến ngẫu nhiên $X_0, X_1, X_2, ...$ ta có thể viết thành $(X_n)_{n \geq 0}$. 
+\end{itemize}
+
+% \subsection*{Phân phối}
+
+\begin{itemize}
+    \item Xét một biến ngẫu nhiên $X$ có miền giá trị $S = \{x_0, x_1, ..., x_n\}$. Khi đó \textbf{phân phối xác suất} của $X$ sẽ cho biết xác suất xảy ra của các giá trị mà $X$ có thể có.
+
+    \item Thông thường ta có thể biểu diễn phân phối xác suất của $X$, gọi là $\pi$, thành một vector dòng có dạng như sau (đặt $\pi_i = \P(X = x_i)$ với $x_i \in S$):
+    $$
+    \pi = \begin{bmatrix}
+        \pi_0 & \pi_1 & \pi_2 & ... & \pi_n
+    \end{bmatrix}
+    $$
+
+    \item Hoặc ta có thể biểu diễn phân phối xác suất của $X$ thành một hàm số, nếu $X$ là biến ngẫu nhiên rời rạc thì ta gọi hàm số đó là \textbf{hàm khối xác suất}.
+
+    \item Ngoài ra nếu ta viết $\pi(x_i)$ thì ta có thể hiểu theo hai nghĩa, nếu $\pi$ là một hàm khối xác suất thì $\pi(x_i)$ là giá trị của hàm đó tại $x_i$, còn nếu $\pi$ là một vector thì $\pi(x_i) = \pi_i$.
+\end{itemize}
+
+\begin{defivn}
+    Hàm \textbf{khối xác suất} hay viết tắt là \textbf{pmf} của một biến ngẫu nhiên rời rạc $X$ là:
+    $$
+    p_X(x) = \P(X = x)
+    $$
+\end{defivn}
+
+\begin{defivn}
+    Hàm \textbf{khối xác suất đồng thời} của hai biến ngẫu nhiên rời rạc $X$ và $Y$ được định nghĩa là:
+    $$
+    p_{XY}(x, y) = \P(X = x \hspace*{5pt} \text{và} \hspace*{5pt} Y = y)
+    $$
+    Ngoài ta có thể viết $\P(X=x, Y=y)$ thay cho $\P(X = x \hspace*{5pt} \text{và} \hspace*{5pt} Y = y)$.
+\end{defivn}
+
+% % \begin{defivn}
+% %     Hàm \textbf{phân phối xác suất tích luỹ} hay viết tắt là \textbf{cdf} của một biến ngẫu nhiên rời rạc $X$ là:
+% %     $$
+% %     F_X(x) = \P(X \leq x)
+% %     $$
+% % \end{defivn}
+
+% % \begin{defivn}
+% %     Hàm \textbf{phân phối xác suất tích luỹ đồng thời} của hai biến ngẫu nhiên rời rạc $X$ và $Y$ được định nghĩa là:
+% %     $$
+% %     F_{XY}(x, y) = \P(X \leq x, Y \leq y)
+% %     $$
+% % \end{defivn}

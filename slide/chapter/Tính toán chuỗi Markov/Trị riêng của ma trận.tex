@@ -1,0 +1,82 @@
+\subsection{Trị riêng của ma trận}
+%%--------frame 1-------
+\begin{frame}{Trị riêng của ma trận}
+\begin{itemize}
+    \item[\bullet] Các trị riêng của ma trận Markov có một số tính chất đặc biệt, các tính chất này giúp chúng ta có thể giải thích các tính chất của chuỗi Markov bằng ngôn ngữ của đại số tuyến tính một cách trực quan và dễ dàng hơn.
+\end{itemize}
+\vfill
+    \begin{mytheo*}{}
+        Ma trận markov luôn có ít nhất một trị riêng bằng 1.
+    \end{mytheo*}
+    \vfill
+\end{frame}
+
+%%--------frame 2-------
+\begin{frame}{Trị riêng của ma trận}
+    \begin{myproof*}{}
+\begin{itemize}
+    \item[\bullet] Với ma trận Markov $\mathbf{P}$ có kích thước $n \times n$, xét phương trình:
+    \begin{align}
+        \mathbf{P}\textbf{x} &= \textbf{x} \\
+        (\mathbf{P} - I)\textbf{x} &= 0.
+    \end{align}
+   
+    % \item[\bullet] Với $p_{ij}$ là phần tử hàng $i$ cột $j$ của $P$, $b_{ij}$ là phẩn tử hàng $i$ cột $j$ của $P - I$, $k \leq n$, ta có:
+    \item[\bullet] Với $b_{ij}$ là phẩn tử hàng $i$ cột $j$ của $\mathbf{P} - I$, $k \leq n$, ta có:
+    \begin{align}
+        \sum_{j = 1}^{n}b_{kj} =  \sum_{j = 1}^{n}P_{kj} - 1 = 1 - 1 = 0.
+    \end{align}
+
+    \item[\bullet] Suy ra, với $\textbf{u}_i$ là các vector cột của $(\mathbf{P}-\lambda I)$, ta có:
+    \begin{align}
+        \sum_{i=1}^{n} \textbf{u}_i = 0.
+    \end{align}
+
+    \item[\bullet] Suy ra các các vector cột của $(\mathbf{P}-\lambda I)$ phụ thuộc tuyến tính, từ đó suy ra $r(\mathbf{P}) < n$, hay phương trình (2) luôn có nghiệm. 
+
+    \item[\bullet] Vậy, vì $\lambda = 1$ thoả $\mathbf{P}$\textbf{x} = 1\textbf{x} nên 1 là trị riêng của $\mathbf{P}$.
+\end{itemize}
+\end{myproof*}
+\end{frame}
+%%--------frame 3-------
+\begin{frame}{Trị riêng của ma trận}
+    \begin{mytheo*}{}
+        Các trị riêng của ma trận Markov luôn bé hơn hoặc bằng 1.
+    \end{mytheo*}
+    \begin{myproof*}{}
+    \begin{itemize}
+        \item[\bullet] Với ma trận Markov $\mathbf{P}$ có kích thước $n \times n$, $\lambda$ là 1 trị riêng của $\mathbf{P}$, ta có: 
+        \begin{align*}
+            \mathbf{P}\textbf{x} = \lambda \textbf{x}
+        \end{align*}
+    
+        \item[\bullet]Xét hàng thứ $k$ của cả 2 vế, ta có:
+        \begin{align*}
+            \sum_{j = 1}^n P_{kj}x_j = \lambda x_k
+        \end{align*}
+    
+        \item[\bullet] Đặt phần tử $x_m$ thoả:
+        \begin{align*}
+            |x_m| = \max (|x_1|, |x_2|, ... ,|x_n|)
+        \end{align*}
+    \end{itemize}
+\end{myproof*}
+\end{frame}
+
+%%--------frame 4-------
+\begin{frame}{Trị riêng của ma trận}
+    \begin{myproof*}{(tt)}
+    \begin{itemize}
+        \item[\bullet] Lúc này, ta có:
+        \begin{align*}
+        |\lambda x_m| &= \left|\sum_{j = 1}^n P_{mj}x_j\right|
+        \leq \sum_{j = 1}^n |P_{mj}x_j|           
+        \leq \sum_{j = 1}^n |P_{mj}x_m| \\         
+        &= |x_m|\sum_{j = 1}^n |P_{mj}|         
+        = |x_m|.1
+        \end{align*}
+        
+        \item[\bullet] Suy ra $\lambda \leq 1$
+    \end{itemize}
+\end{myproof*}
+\end{frame}

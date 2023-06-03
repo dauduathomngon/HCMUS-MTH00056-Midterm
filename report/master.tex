@@ -1,0 +1,50 @@
+\input{preamble}
+
+\renewcommand{\P}{\mathbb{P}}
+\graphicspath{ {figure/} }
+\setcounter{MaxMatrixCols}{20}
+\begin{document}
+
+% set up
+\include{front-page}
+\tableofcontents
+\listoffigures
+\pagebreak
+
+%%%%%%%%%%
+\chapter*{Phân công công việc}
+\addcontentsline{toc}{chapter}{Phân công công việc}
+\begin{center}
+\begin{tabular}{|c|c|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{4cm}|l|}
+    \hline
+    STT & Người phụ trách & Mô tả nội dung công việc & Đánh giá\\
+    \hline
+    1 & Lê Nguyễn & Làm chương 0, chương 1 và phần 2.1 & Hoàn thành tốt\\
+    \hline
+    2 & Nguyễn Anh Tú & Làm slide, phần 2.3 & Hoàn thành tốt\\
+    \hline
+    3 & Phan Nguyên Phương & Chứng minh phần trị riêng và hội tụ của ma trận và làm phần 2.2, 2.4 & Hoàn thành tốt\\
+    \hline
+    4 & Vũ Minh Thư & Làm phần ứng dụng ở chương 3 & Hoàn thành tốt\\
+    \hline
+\end{tabular}
+\end{center}
+%%%%
+
+% \include{utils/glossary}
+\include{utils/acknowledgement}
+
+% chapter
+\include{utils/appendix}
+
+\include{chapter/ch1}
+\include{chapter/ch2}
+\include{chapter/ch3}
+
+% bib
+\nocite{*} 
+\bibliographystyle{plain}
+\bibliography{ref}
+\addcontentsline{toc}{chapter}{Tài liệu tham khảo}
+
+\end{document}

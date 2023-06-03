@@ -1,0 +1,101 @@
+\subsection{Lũy thừa ma trận}
+%%--------frame 1-------
+\begin{frame}{Lũy thừa ma trận}
+    \begin{itemize}
+    \item[\bullet] Xét một chuỗi Markov có $S = \{x_1, x_2, ..., x_n\}$ và một phân phối ban đầu $\pi_0$. 
+
+    \item[\bullet] Để tính toán được $\pi_1$, áp dụng công thức xác suất đầy đủ, ta có:
+    $$
+    \begin{aligned}
+    \pi_1(x_i) &= \P(X_1 = x_i) \\ 
+    &= \sum_{j = 0}^{n} \P(X_0 = x_j)\P(X_1  = x_i \mid X_0 = x_j) \\
+    &= \sum_{j = 0}^{n} \pi_0(x_j) P_{x_jx_i}
+    \end{aligned}
+    $$
+
+    \item[\bullet] Ta có thể thấy $\pi_1(x_i)$ chính là tích vô hướng giữa vector dòng $\pi_0$ và cột thứ $i$ của ma trận $\mathbf{P}$. Vậy ta có:
+    $$
+    \pi_1 = \begin{bmatrix}
+        \pi_1(x_1) & \pi_1(x_2) & \dotsb & \pi_1(x_n) \\
+    \end{bmatrix} = \pi_0 \mathbf{P}
+    $$
+    \end{itemize}
+\end{frame}
+%%--------frame 2-------
+\begin{frame}{Lũy thừa ma trận}
+    \begin{itemize}
+    \item[\bullet] Tiếp theo để tính được $\pi_2(x_i)$ ta tiếp tục áp dụng công thức xác suất đầy đủ:
+    $$
+    \begin{aligned}
+    \pi_2(x_i) &= \P(X_2 = x_i) \\
+    &= \sum_{j=0}^{n} \P(X_1 = x_j) \P(X_2 = x_i \mid X_1 = x_j) \\
+    &= \sum_{j=0}^{n} \pi_1(x_j) \P(X_1 = x_i \mid X_0 = x_j) \\
+    &= \sum_{j=0}^{n} \pi_1(x_j) P_{x_jx_i} \\
+    &= \sum_{j=0}^{n} \left( \sum_{k=0}^{n} \pi_0(x_k) P_{x_kx_j} \right) P_{x_jx_i} \\
+    &= \sum_{k=0}^{n} \pi_0(x_k) \left( \sum_{j = 0}^n P_{x_kx_j} P_{x_jx_i} \right)
+    \end{aligned}
+    $$
+    \end{itemize}
+\end{frame}
+%%--------frame 3-------
+\begin{frame}{Lũy thừa ma trận}
+    \begin{itemize}
+    \item[\bullet] Ta có thể thấy $\pi_2(x_j)$ chính là tích vô hướng giữa vector dòng $\pi_0$ và cột thứ $i$ của ma trận $\mathbf{P}^2$. Vậy ta có:
+    $$
+    \pi_2 = \begin{bmatrix}
+        \pi_2(x_1) & \pi_2(x_2) & ... & \pi_2(x_n) \\
+    \end{bmatrix} = \pi_0 \mathbf{P}^2
+    $$
+
+    \item[\bullet] Ta gọi $\P(X_2 = y \mid X_0 = x)$ là \textit{xác suất chuyển tiếp 2-bước}. Tương tự với $\P(X_n = y \mid X_0 = x)$ ta gọi là \textit{xác suất chuyển tiếp n-bước}.
+
+    \item[\bullet] Dựa vào xác suất chuyển tiếp 2-bước và 1-bước, ta có thể doán được:
+    \begin{equation}
+    \pi_n = \pi_0 \mathbf{P}^{n}
+    \end{equation}
+    \end{itemize}
+\end{frame}
+
+%%--------frame 4-------
+\begin{frame}{Lũy thừa ma trận}
+\begin{myproof*}{} Ta sẽ dùng quy nạp để chứng minh. Đầu tiên ta đã chứng minh được phương trình (1) đúng với $n = 1$ và $n = 2$, giả sử $n = k$ đúng, nghĩa là:
+    $$
+    \pi_k = \pi_0 \mathbf{P}^k
+    $$
+    \noindent Xét $n = k+1$, ta có:
+    $$ 
+    \begin{aligned}
+    \pi_{k+1}(x_i) &= \P(X_{k+1} = x_i) \\
+    &= \sum_{j=0}^{n} \P(X_{k} = x_j) \P(X_{k+1} = x_i \mid X_k = x_j) \\
+    &= \sum_{j=0}^{n} \P(X_{k} = x_j) \P(X_1 = x_i \mid X_0 = x_j) = \sum_{j=0}^{n} \pi_{k}(x_j) P_{x_jx_i} \\
+    \end{aligned}
+    $$
+
+    \noindent Ta có thể thấy $\pi_{k+1}(x_i)$ là tích vô hướng giữa vector dòng $\pi_k$ và cột thứ $i$ của ma trận chuyển tiếp $\mathbf{P}$, do đó:
+    $$
+    \pi_{k+1} = \pi_k \mathbf{P} = \pi_0 \mathbf{P}^{k} \mathbf{P} = \pi_0 \mathbf{P}^{k+1}
+    $$
+
+    \noindent Vậy theo quy nạp, phương trình (1) đúng với mọi $n \geq 1$.
+\end{myproof*}
+\end{frame}
+
+%%--------frame 5-------
+\begin{frame}{Lũy thừa ma trận}
+    \begin{mydef*}{}
+    Cho $(X_n)_{n \geq 0}$ là một chuỗi Markov với ma trận chuyển tiếp $\mathbf{P}$. Với mọi $n \geq 1$, ta gọi ma trận $\mathbf{P}^n$ là \textbf{ma trận chuyển tiếp n-bước}. Các phần tử của ma trận $\mathbf{P}^n$ được gọi là \textbf{xác suất chuyển tiếp n-bước}. Với mọi $x, y \in S$  ta kí hiệu xác suất chuyển tiếp n bước từ $x$ tới $y$ là $P^n_{xy}$.
+\end{mydef*}
+
+\begin{itemize}
+    \item[\bullet] Để dễ dàng hơn trong việc tính toán ma trận $\mathbf{P}^n$ ta có thể dùng phương pháp chéo hoá.
+    \item[\bullet] Dùng tính chất của luỹ thừa, ta có:
+    $$
+    \pi_{n + m} = \pi_0 \mathbf{P}^{n + m} = \pi_0 \mathbf{P}^n \mathbf{P}^m
+    $$
+
+    \item[\bullet] Ngoài ra ta có:
+    $$
+    \P(X_n = y \mid X_0 = x) = P^n_{xy} \implies \P(X_{m + n} = y \mid X_{m} = x) = P^n_{xy}
+    $$
+\end{itemize}
+\end{frame}
